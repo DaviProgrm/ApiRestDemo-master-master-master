@@ -24,17 +24,6 @@ public class UsuarioController {
         this.mapper = mapper;
     }
 
-    /*@PostMapping("/cadastrarusuario")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Usuario.DtoResponse create(@RequestBody Usuario.DtoRequest p){
-
-        Usuario usuario = this.service.create(Usuario.DtoRequest.convertToEntity(p, mapper));
-
-        Usuario.DtoResponse response = Usuario.DtoResponse.convertToDto(usuario, mapper);
-        response.generateLinks(usuario.getId());
-
-        return response;
-    }*/
 
     @GetMapping
     public List<Usuario.DtoResponse> list(){

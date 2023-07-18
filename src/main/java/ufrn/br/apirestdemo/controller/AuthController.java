@@ -54,13 +54,5 @@ public class AuthController {
         return ResponseEntity.ok(service.register(request));
     }
 
-    /*
-    Basic Authentication
-    @PostMapping("/token")
-    public String token(Authentication authentication) {
-        String token = tokenService.generateToken(authentication);
-        return token;
-    }
-     */
 
 }

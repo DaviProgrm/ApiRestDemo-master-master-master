@@ -66,33 +66,16 @@ public class SecurityConfig {
         return new ProviderManager(authProvider);
     }
 
-    /*
-    @Bean
-    public BCryptPasswordEncoder encoder(){
-        return new BCryptPasswordEncoder();
-    }
-     */
-
     @Bean
     public UserDetailsService users() {
         return username -> (UserDetails) repository.findByUsuario(username)
                  .orElseThrow(() -> new UsernameNotFoundException("Usuario nao existe"));
     }
-    /*
-    @Bean
-    public InMemoryUserDetailsManager users() {
-        return new InMemoryUserDetailsManager(
-                User.withUsername("taniro")
-                        .password("{noop}password")
-                        .authorities("write")
-                        .build()
-        );
-    }*/
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable).cors(Customizer.withDefaults())
                 .authorizeHttpRequests( auth -> {
                             auth.requestMatchers(AUTH_WHITELIST).permitAll();
                             auth.anyRequest().authenticated();
